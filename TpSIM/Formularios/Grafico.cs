@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace TpSIM.Formularios
 {
@@ -114,9 +115,13 @@ namespace TpSIM.Formularios
         {
             if (verificarSeleccion())
             {
+                
                 graficoValores.Series.Clear(); // limpia el grafico
                 
                 graficoValores.Series.Add("Valores");
+                graficoValores.Series[0].SetCustomProperty("PointWidth", "1");
+                
+                graficoValores.Series[0].BorderColor = Color.Black;
                 decimal[] minMax = buscarMinMax(); // llama a la funcion para buscarl los vlores minimos y maximo de la lista local
                 int cantIntervalos = cantidadIntervalos(); // devuelve el valor del combo que se a seleccionado
                 decimal intervalo = (minMax[1] - minMax[0]) / (cantIntervalos - 1); //distncia entre intervalos
@@ -129,6 +134,8 @@ namespace TpSIM.Formularios
                     string nombreIntervalo = (i + 1).ToString() + ": " + (min).ToString() + "-" + (max).ToString();
                     graficoValores.Series.Add(nombreIntervalo); //Crea los valores de la leyenda del grafico
                     graficoValores.Series[0].Points.AddXY((double)(i + 1), (double)valores[i]); //Asigna los valores del eje x (Intervalos) e y (apricion de los numeros en los intervalos) al grafico 
+                    
+
                 }
 
             }
