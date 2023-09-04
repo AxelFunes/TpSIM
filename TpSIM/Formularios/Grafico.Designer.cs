@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rb15 = new System.Windows.Forms.RadioButton();
-            this.rb5 = new System.Windows.Forms.RadioButton();
+            this.rb25 = new System.Windows.Forms.RadioButton();
             this.rb20 = new System.Windows.Forms.RadioButton();
             this.rb10 = new System.Windows.Forms.RadioButton();
             this.btnGenerar = new System.Windows.Forms.Button();
@@ -50,7 +50,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.rb15);
-            this.panel1.Controls.Add(this.rb5);
+            this.panel1.Controls.Add(this.rb25);
             this.panel1.Controls.Add(this.rb20);
             this.panel1.Controls.Add(this.rb10);
             this.panel1.Location = new System.Drawing.Point(139, 21);
@@ -62,7 +62,7 @@
             // rb15
             // 
             this.rb15.AutoSize = true;
-            this.rb15.Location = new System.Drawing.Point(107, 6);
+            this.rb15.Location = new System.Drawing.Point(52, 6);
             this.rb15.Name = "rb15";
             this.rb15.Size = new System.Drawing.Size(37, 17);
             this.rb15.TabIndex = 3;
@@ -70,21 +70,21 @@
             this.rb15.Text = "15";
             this.rb15.UseVisualStyleBackColor = true;
             // 
-            // rb5
+            // rb25
             // 
-            this.rb5.AutoSize = true;
-            this.rb5.Location = new System.Drawing.Point(15, 6);
-            this.rb5.Name = "rb5";
-            this.rb5.Size = new System.Drawing.Size(31, 17);
-            this.rb5.TabIndex = 1;
-            this.rb5.TabStop = true;
-            this.rb5.Text = "5";
-            this.rb5.UseVisualStyleBackColor = true;
+            this.rb25.AutoSize = true;
+            this.rb25.Location = new System.Drawing.Point(147, 6);
+            this.rb25.Name = "rb25";
+            this.rb25.Size = new System.Drawing.Size(37, 17);
+            this.rb25.TabIndex = 1;
+            this.rb25.TabStop = true;
+            this.rb25.Text = "25";
+            this.rb25.UseVisualStyleBackColor = true;
             // 
             // rb20
             // 
             this.rb20.AutoSize = true;
-            this.rb20.Location = new System.Drawing.Point(159, 6);
+            this.rb20.Location = new System.Drawing.Point(95, 6);
             this.rb20.Name = "rb20";
             this.rb20.Size = new System.Drawing.Size(37, 17);
             this.rb20.TabIndex = 4;
@@ -95,7 +95,7 @@
             // rb10
             // 
             this.rb10.AutoSize = true;
-            this.rb10.Location = new System.Drawing.Point(57, 6);
+            this.rb10.Location = new System.Drawing.Point(9, 6);
             this.rb10.Name = "rb10";
             this.rb10.Size = new System.Drawing.Size(37, 17);
             this.rb10.TabIndex = 2;
@@ -156,17 +156,17 @@
             // 
             // graficoValores
             // 
-            chartArea1.Name = "ChartArea1";
-            this.graficoValores.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.graficoValores.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.graficoValores.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.graficoValores.Legends.Add(legend2);
             this.graficoValores.Location = new System.Drawing.Point(327, 77);
             this.graficoValores.Name = "graficoValores";
-            series1.ChartArea = "ChartArea1";
-            series1.CustomProperties = "PointWidth=1";
-            series1.Legend = "Legend1";
-            series1.Name = "Valores";
-            this.graficoValores.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.CustomProperties = "PointWidth=1";
+            series2.Legend = "Legend1";
+            series2.Name = "Valores";
+            this.graficoValores.Series.Add(series2);
             this.graficoValores.Size = new System.Drawing.Size(529, 452);
             this.graficoValores.TabIndex = 18;
             this.graficoValores.Text = "chart1";
@@ -196,7 +196,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton rb15;
-        private System.Windows.Forms.RadioButton rb5;
+        private System.Windows.Forms.RadioButton rb25;
         private System.Windows.Forms.RadioButton rb20;
         private System.Windows.Forms.RadioButton rb10;
         private System.Windows.Forms.Button btnGenerar;

@@ -36,9 +36,9 @@ namespace TpSIM.Formularios
         {
             int num;
 
-            if (rb5.Checked)
+            if (rb25.Checked)
             {
-                num = 5;
+                num = 25;
             }
             else if (rb10.Checked)
             {
@@ -58,7 +58,7 @@ namespace TpSIM.Formularios
 
         private bool verificarSeleccion()
         {
-            if (rb5.Checked || rb10.Checked || rb15.Checked || rb20.Checked)
+            if (rb25.Checked || rb10.Checked || rb15.Checked || rb20.Checked)
             {
                 return true;
             }
