@@ -90,21 +90,21 @@ namespace TpSIM.Formularios
 
         private float[] buscarMinMax() // busca los vaclores minimo y maximo respectivamente de la lista local
         {
-            float min = listaLocal[0];
-            float max = listaLocal[0];
             float[] resultados = new float[2];
+            float min = listaLocal.Min();
+            float max = listaLocal.Max();
 
-            for (int i = 0; i < listaLocal.Length; i++)
-            {
-                if (listaLocal[i] > max)
-                {
-                    max = listaLocal[i];
-                }
-                if (listaLocal[i] < min)
-                {
-                    min = listaLocal[i];
-                }
-            }
+            //for (int i = 0; i < listaLocal.Length; i++)
+            //{
+            //    if (listaLocal[i] > max)
+            //    {
+            //        max = listaLocal[i];
+            //    }
+            //    if (listaLocal[i] < min)
+            //    {
+            //        min = listaLocal[i];
+            //    }
+            //}
 
             resultados[0] = min;
             resultados[1] = max;

@@ -22,27 +22,52 @@ namespace TpSIM.Formularios
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-
-            double nroRandom = 0;
-            if (verificarEntradas())
+            try
             {
-                Random rand = new Random();
-                int cantidad = int.Parse(txtCantidad.Text);
-                lista = new float[cantidad]; //Crea una lista con la cantidad de nros que se van a generar
-
-                grilla.Rows.Clear();
-                for (int i = 0; i < cantidad; i++)
+                if (verificarCantidadIngresada())
                 {
-                    int limiteA = int.Parse(txtLimiteA.Text);
-                    int limiteB = int.Parse(txtLimiteB.Text);
-                    nroRandom = Math.Round(rand.NextDouble(), 4); // Genera un numero random que se utilizara para generar una distribucion uniforme
-                    float x = (float)(limiteA + nroRandom * (limiteB - limiteA)); // Genera un numero aleatorio con distribucion uniforme usando la formula 𝑋 = 𝐴 + 𝑅𝑁𝐷(𝐵 − 𝐴)
-                    x = (float)Math.Round(x, 4);
+                    double nroRandom = 0;
+                    if (verificarEntradas())
+                    {
+                        Random rand = new Random();
+                        int cantidad = int.Parse(txtCantidad.Text);
+                        lista = new float[cantidad]; //Crea una lista con la cantidad de nros que se van a generar
 
-                    lista[i] = x;
-                    grilla.Rows.Add(i + 1, nroRandom, x); // Agrega una fila a la grilla con los valores de la iteracion, RND y el valor de la ditribusion uniforme
+                        grilla.Rows.Clear();
+                        for (int i = 0; i < cantidad; i++)
+                        {
+                            int limiteA = int.Parse(txtLimiteA.Text);
+                            int limiteB = int.Parse(txtLimiteB.Text);
+                            nroRandom = Math.Round(rand.NextDouble(), 4); // Genera un numero random que se utilizara para generar una distribucion uniforme
+                            float x = (float)(limiteA + nroRandom * (limiteB - limiteA)); // Genera un numero aleatorio con distribucion uniforme usando la formula 𝑋 = 𝐴 + 𝑅𝑁𝐷(𝐵 − 𝐴)
+                            x = (float)Math.Round(x, 4);
+
+                            lista[i] = x;
+                            grilla.Rows.Add(i + 1, nroRandom, x); // Agrega una fila a la grilla con los valores de la iteracion, RND y el valor de la ditribusion uniforme
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Cantidad ingresada mayor a la permitida, ingrese un valor menor a 1.000.000");
+                    txtCantidad.Clear();
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error al generar los numeros aleatorios con distribucion uniforme. -" + ex.Message);
+            }
+            
+        }
+
+        private bool verificarCantidadIngresada()
+        {
+            if (Convert.ToInt64(txtCantidad.Text) < 1000000)
+            {
+                return true;
+            }
+            else { return false; }
         }
 
         private bool verificarEntradas()
@@ -92,8 +117,16 @@ namespace TpSIM.Formularios
 
         private void btnGrafico_Click(object sender, EventArgs e)
         {
-            btnVolverG grafico = new btnVolverG(lista);
-            grafico.Show();
+            try
+            {
+                btnVolverG grafico = new btnVolverG(lista);
+                grafico.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al migrar al grafico de distribucion uniforme. - "+ex.Message);
+            }
+            
         }
 
 

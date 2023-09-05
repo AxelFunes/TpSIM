@@ -43,9 +43,9 @@
             this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.graficoValores = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tablaFrecuencias = new System.Windows.Forms.DataGridView();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnVolver = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoValores)).BeginInit();
@@ -192,19 +192,6 @@
             this.tablaFrecuencias.Size = new System.Drawing.Size(293, 272);
             this.tablaFrecuencias.TabIndex = 19;
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Intervalo";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Frecuencia Observada";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 140;
-            // 
             // btnVolver
             // 
             this.btnVolver.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -215,6 +202,20 @@
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Intervalo";
+            this.Column1.MaxInputLength = 500000;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Frecuencia Observada";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 140;
             // 
             // btnVolverG
             // 
@@ -254,8 +255,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn valor;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoValores;
         private System.Windows.Forms.DataGridView tablaFrecuencias;
+        private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Button btnVolver;
     }
 }
