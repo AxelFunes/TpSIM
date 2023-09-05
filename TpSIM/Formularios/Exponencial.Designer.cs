@@ -143,7 +143,7 @@
             this.numero,
             this.valor,
             this.Exp});
-            this.grilla.Location = new System.Drawing.Point(367, 45);
+            this.grilla.Location = new System.Drawing.Point(371, 45);
             this.grilla.Name = "grilla";
             this.grilla.ReadOnly = true;
             this.grilla.RowHeadersWidth = 51;

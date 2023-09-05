@@ -12,9 +12,9 @@ namespace TpSIM.Formularios
 {
     public partial class Exponencial : Form
     {
-        decimal[] lista;
-        decimal[] minMax = new decimal[2];
-        decimal param;
+        float[] lista;
+        float[] minMax = new float[2];
+        float param;
 
         public Exponencial()
         {
@@ -66,7 +66,7 @@ namespace TpSIM.Formularios
             {
                 lambda = Math.Pow(1 / Math.Sqrt(numero), 2);
             }
-            param = (decimal)lambda;
+            param = (float)lambda;
             return lambda;
         }
 
@@ -79,15 +79,15 @@ namespace TpSIM.Formularios
                 Random rand = new Random();
                 int cantidad = int.Parse(txtCantidad.Text);
                 double lambda = completarExponencial(double.Parse(txtParametro.Text));
-                lista = new decimal[cantidad];
+                lista = new float[cantidad];
                 grilla.Rows.Clear();
 
                 for (int i = 0; i < cantidad; i++)
                 {
                     nroRandom = Math.Round(rand.NextDouble(), 4); // genera un numero RND para calcular el de la distribucion
-                    decimal xTxt = (decimal)(-(1 / lambda) * Math.Log(1 - nroRandom));  // Genera un numero con distribucion exponencial negativa
+                    float xTxt = (float)(-(1 / lambda) * Math.Log(1 - nroRandom));  // Genera un numero con distribucion exponencial negativa
 
-                    xTxt = decimal.Round(xTxt, 4);
+                    xTxt = (float)Math.Round(xTxt, 4);
 
                     lista[i] = xTxt;
 
@@ -115,7 +115,7 @@ namespace TpSIM.Formularios
 
         private void btnGrafico_Click(object sender, EventArgs e)
         {
-            Grafico grafico = new Grafico(lista);
+            btnVolverG grafico = new btnVolverG(lista);
             grafico.Show();
         }
 
@@ -130,7 +130,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar decimales
+            // solo permite un punto para representar floates
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -145,7 +145,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar decimales
+            // solo permite un punto para representar floates
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
