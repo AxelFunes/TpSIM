@@ -28,14 +28,14 @@ namespace TpSIM.Formularios
             Varianza
         }
 
-        private void Exponencial_Load(object sender, EventArgs e)
+        private void Exponencial_Load(object sender, EventArgs e) //Carga automatica de los parametros del combo box de los parametros
         {
             cmbParametro.Items.Add(Parametro.Lambda.ToString());
             cmbParametro.Items.Add(Parametro.Media.ToString());
             cmbParametro.Items.Add(Parametro.Varianza.ToString());
         }
 
-        private bool verificarCantidadIngresada()
+        private bool verificarCantidadIngresada() // Valida que la cantidad de numeros a generar no superen los 1.000.000
         {
             if (Convert.ToInt64(txtCantidad.Text) < 1000000)
             {
@@ -44,7 +44,7 @@ namespace TpSIM.Formularios
             else { return false; }
         }
 
-        private bool verificarEntradas()
+        private bool verificarEntradas() //Controla que los datos que ingresa el usaurio sean los correctos
         {
             if (!double.TryParse(txtParametro.Text, out double resultado1))
             {
@@ -60,7 +60,7 @@ namespace TpSIM.Formularios
             return true;
         }
 
-        private double completarExponencial(double numero) //Calcula el valor de Lambda
+        private double completarExponencial(double numero) //Calcula el valor de Lambda segun los datos que se hayan ingresados por el usuario
         {
             double lambda;
             if (cmbParametro.Text == Parametro.Lambda.ToString())
@@ -90,7 +90,7 @@ namespace TpSIM.Formularios
                     {
                         Random rand = new Random();
                         int cantidad = int.Parse(txtCantidad.Text);
-                        double lambda = completarExponencial(double.Parse(txtParametro.Text));
+                        double lambda = completarExponencial(double.Parse(txtParametro.Text)); //calcula lambda
                         lista = new double[cantidad];
                         grilla.Rows.Clear();
 
@@ -98,23 +98,8 @@ namespace TpSIM.Formularios
                         {
                             nroRandom = Math.Round(rand.NextDouble(), 4); // genera un numero RND para calcular el de la distribucion
                             double xTxt = (double)((-1 / lambda) * Math.Log((1 - nroRandom)));  // Genera un numero con distribucion exponencial negativa
-
                             xTxt = (double)Math.Round(xTxt, 4);
-
                             lista[i] = xTxt;
-
-                            //// se obtiene de los valores generados el minimos y maximos que se usaran para Chi
-                            //if (i == 0)
-                            //{
-                            //    minMax[0] = xTxt;
-                            //    minMax[1] = xTxt;
-                            //}
-                            //else
-                            //{
-                            //    if (xTxt < minMax[0]) minMax[0] = xTxt;
-                            //    if (xTxt > minMax[1]) minMax[1] = xTxt;
-                            //}
-
                             grilla.Rows.Add(i + 1, nroRandom, xTxt); // carga a la grilla los valores de la iteracion, el RND usado y el valor generado de la distribucion exponencial
                         }
                     }
@@ -162,7 +147,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar floates
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -177,7 +162,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar floates
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;

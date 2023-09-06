@@ -21,7 +21,7 @@ namespace TpSIM.Formularios
             InitializeComponent();
         }
 
-        private bool verificarCantidadIngresada()
+        private bool verificarCantidadIngresada() // Controlo que los numeros aleatorios que se vayan a generar no sean mayores a 1.000.000
         {
             if (Convert.ToInt64(txtCantidad.Text) < 1000000)
             {
@@ -30,7 +30,7 @@ namespace TpSIM.Formularios
             else { return false; }
         }
 
-        private bool verificarEntradas()
+        private bool verificarEntradas() //Controlo que los datos ingresados por el usuario sean los correspondientes
         {
             if (!double.TryParse(txtMedia.Text, out double resultado1))
             {
@@ -81,19 +81,6 @@ namespace TpSIM.Formularios
                                 string n1s = (Math.Sqrt(-2 * Math.Log(random1)) * Math.Cos(2 * Math.PI * random2) * desviacion + media).ToString(); //Genera un nuemero con distribucion normal usando la 1ra formula de box-muller
                                 double n1 = (double)Math.Round(double.Parse(n1s), 4);
                                 lista[i] = n1; //Inserta el numero generado de la distribucionen la lista
-
-                                // se obtiene los valores minimos y maximos generados para Chi
-                                if (i == 0)
-                                {
-                                    minMax[0] = n1;
-                                    minMax[1] = n1;
-                                }
-                                else
-                                {
-                                    if (n1 < minMax[0]) minMax[0] = n1;
-                                    if (n1 > minMax[1]) minMax[1] = n1;
-                                }
-
                                 grilla.Rows.Add(i + 1, Math.Round(random1, 4) + "  -  " + Math.Round(random2, 4), n1);
                             }
                             else
@@ -101,19 +88,6 @@ namespace TpSIM.Formularios
                                 string n2s = (Math.Sqrt(-2 * Math.Log(random1)) * Math.Sin(2 * Math.PI * random2) * desviacion + media).ToString(); //Genera otro nuemero con distribucion normal usando la 2da formula de box-muller
                                 double n2 = (double)Math.Round(double.Parse(n2s), 4);
                                 lista[i] = n2; //Inserta el numero generado de la distribucion en en la lista
-
-                                // se obtiene los valores minimos y maximos generados para Chi
-                                if (i == 0)
-                                {
-                                    minMax[0] = n2;
-                                    minMax[1] = n2;
-                                }
-                                else
-                                {
-                                    if (n2 < minMax[0]) minMax[0] = n2;
-                                    if (n2 > minMax[1]) minMax[1] = n2;
-                                }
-
                                 grilla.Rows.Add(i + 1, Math.Round(random1, 4) + "  -  " + Math.Round(random2, 4), n2);
 
                                 // Genera los siguientes dos numeros rnd que se usaran para la distribucion normal con box-muller
@@ -165,7 +139,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar doubles
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -180,7 +154,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar doublees
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -196,7 +170,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar doublees
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;

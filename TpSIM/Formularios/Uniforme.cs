@@ -31,7 +31,7 @@ namespace TpSIM.Formularios
                     {
                         Random rand = new Random();
                         int cantidad = int.Parse(txtCantidad.Text);
-                        lista = new double[cantidad]; //Crea una lista con la cantidad de nros que se van a generar
+                        lista = new double[cantidad]; //Crea una lista con la cantidad de numeros que se van a generar
 
                         grilla.Rows.Clear();
                         for (int i = 0; i < cantidad; i++)
@@ -61,7 +61,7 @@ namespace TpSIM.Formularios
             
         }
 
-        private bool verificarCantidadIngresada()
+        private bool verificarCantidadIngresada() // controla que la cantidad de numeros aleatorios a crear no superen los 1.000.000
         {
             if (Convert.ToInt64(txtCantidad.Text) < 1000000)
             {
@@ -70,7 +70,7 @@ namespace TpSIM.Formularios
             else { return false; }
         }
 
-        private bool verificarEntradas()
+        private bool verificarEntradas() //Controla que los datos ingresados por el usuario sean los correctos
         {
             if (!double.TryParse(txtLimiteA.Text, out double resultado1))
             {
@@ -105,8 +105,8 @@ namespace TpSIM.Formularios
                 return false;
             }
             // se obtiene de los valores generados el minimos y maximos que se usaran para Chi
-            minMax[0] = A;
-            minMax[1] = B;
+            //minMax[0] = A;
+            //minMax[1] = B;
             return true;
         }
 
@@ -139,7 +139,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar doublees
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -154,7 +154,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar doublees
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -169,7 +169,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar doublees
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
