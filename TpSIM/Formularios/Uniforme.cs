@@ -12,8 +12,8 @@ namespace TpSIM.Formularios
 {
     public partial class Uniforme : Form
     {
-        decimal[] lista;
-        decimal[] minMax = new decimal[2];
+        double[] lista;
+        double[] minMax = new double[2];
 
         public Uniforme()
         {
@@ -22,38 +22,63 @@ namespace TpSIM.Formularios
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-
-            double nroRandom = 0;
-            if (verificarEntradas())
+            try
             {
-                Random rand = new Random();
-                int cantidad = int.Parse(txtCantidad.Text);
-                lista = new decimal[cantidad]; //Crea una lista con la cantidad de nros que se van a generar
-
-                grilla.Rows.Clear();
-                for (int i = 0; i < cantidad; i++)
+                if (verificarCantidadIngresada())
                 {
-                    int limiteA = int.Parse(txtLimiteA.Text);
-                    int limiteB = int.Parse(txtLimiteB.Text);
-                    nroRandom = Math.Round(rand.NextDouble(), 4); // Genera un numero random que se utilizara para generar una distribucion uniforme
-                    decimal x = (decimal)(limiteA + nroRandom * (limiteB - limiteA)); // Genera un numero aleatorio con distribucion uniforme usando la formula 𝑋 = 𝐴 + 𝑅𝑁𝐷(𝐵 − 𝐴)
-                    x = decimal.Round(x, 4);
+                    double nroRandom = 0;
+                    if (verificarEntradas())
+                    {
+                        Random rand = new Random();
+                        int cantidad = int.Parse(txtCantidad.Text);
+                        lista = new double[cantidad]; //Crea una lista con la cantidad de numeros que se van a generar
 
-                    lista[i] = x;
-                    grilla.Rows.Add(i + 1, nroRandom, x); // Agrega una fila a la grilla con los valores de la iteracion, RND y el valor de la ditribusion uniforme
+                        grilla.Rows.Clear();
+                        for (int i = 0; i < cantidad; i++)
+                        {
+                            int limiteA = int.Parse(txtLimiteA.Text);
+                            int limiteB = int.Parse(txtLimiteB.Text);
+                            nroRandom = Math.Round(rand.NextDouble(), 4); // Genera un numero random que se utilizara para generar una distribucion uniforme
+                            double x = (double)(limiteA + nroRandom * (limiteB - limiteA)); // Genera un numero aleatorio con distribucion uniforme usando la formula 𝑋 = 𝐴 + 𝑅𝑁𝐷(𝐵 − 𝐴)
+                            x = (double)Math.Round(x, 4);
+
+                            lista[i] = x;
+                            grilla.Rows.Add(i + 1, nroRandom, x); // Agrega una fila a la grilla con los valores de la iteracion, RND y el valor de la ditribusion uniforme
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Cantidad ingresada mayor a la permitida, ingrese un valor menor a 1.000.000");
+                    txtCantidad.Clear();
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error al generar los numeros aleatorios con distribucion uniforme. -" + ex.Message);
+            }
+            
         }
 
-        private bool verificarEntradas()
+        private bool verificarCantidadIngresada() // controla que la cantidad de numeros aleatorios a crear no superen los 1.000.000
         {
-            if (!decimal.TryParse(txtLimiteA.Text, out decimal resultado1))
+            if (Convert.ToInt64(txtCantidad.Text) < 1000000)
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
+        private bool verificarEntradas() //Controla que los datos ingresados por el usuario sean los correctos
+        {
+            if (!double.TryParse(txtLimiteA.Text, out double resultado1))
             {
                 MessageBox.Show("Ingrese correctamente el Limite A");
                 return false;
             }
 
-            if (!decimal.TryParse(txtLimiteB.Text, out decimal resultado2))
+            if (!double.TryParse(txtLimiteB.Text, out double resultado2))
             {
                 MessageBox.Show("Ingrese correctamente el Limite B");
                 return false;
@@ -80,8 +105,8 @@ namespace TpSIM.Formularios
                 return false;
             }
             // se obtiene de los valores generados el minimos y maximos que se usaran para Chi
-            minMax[0] = A;
-            minMax[1] = B;
+            //minMax[0] = A;
+            //minMax[1] = B;
             return true;
         }
 
@@ -92,8 +117,16 @@ namespace TpSIM.Formularios
 
         private void btnGrafico_Click(object sender, EventArgs e)
         {
-            Grafico grafico = new Grafico(lista);
-            grafico.Show();
+            try
+            {
+                btnVolverG grafico = new btnVolverG(lista);
+                grafico.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al migrar al grafico de distribucion uniforme. - "+ex.Message);
+            }
+            
         }
 
 
@@ -106,7 +139,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar decimales
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -121,7 +154,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar decimales
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -136,7 +169,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar decimales
+            // solo permite un punto para representar floats
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
