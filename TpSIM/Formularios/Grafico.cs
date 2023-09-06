@@ -68,7 +68,7 @@ namespace TpSIM.Formularios
             else return false;
         }
 
-        private int[] asignarIntervalos(double[] minMax, int cantIntervalos) // recorre la lista local y cuenta la aparición de los numeros en los intervalos desde hasta
+        private int[] asignarIntervalos(double[] minMax, int cantIntervalos) // recorre la lista local y cuenta la aparición de los numeros en los intervalos desde hasta (FO)
         {
             int[] posiciones = new int[cantIntervalos];
             //DESCOMENTARIZAR en caso el -1
@@ -91,7 +91,7 @@ namespace TpSIM.Formularios
             return posiciones;
         }
         
-        private double[] buscarMinMax() // busca los vaclores minimo y maximo respectivamente de la lista local
+        private double[] buscarMinMax() // busca los valores minimo y maximo respectivamente de la lista local
         {
             double[] resultados = new double[2];
             double min = listaLocal[0];
@@ -115,7 +115,10 @@ namespace TpSIM.Formularios
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
-        {
+        { labelFO.Visible = true;
+          labelInt.Visible = true;
+
+
             if (verificarSeleccion())
             {
                 
@@ -149,6 +152,11 @@ namespace TpSIM.Formularios
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
