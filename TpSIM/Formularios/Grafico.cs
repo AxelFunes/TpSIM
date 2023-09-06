@@ -36,6 +36,7 @@ namespace TpSIM.Formularios
         {
             int num;
 
+
             if (rb10.Checked)
             {
                 num = 10;
@@ -58,7 +59,9 @@ namespace TpSIM.Formularios
 
         private bool verificarSeleccion() //controla las cantidades de intervalos
         {
+
             if (rb10.Checked || rb15.Checked || rb20.Checked || rb25.Checked)
+
             {
                 return true;
             }
@@ -115,14 +118,15 @@ namespace TpSIM.Formularios
         {
             if (verificarSeleccion())
             {
+                
                 graficoValores.Series.Clear(); // limpia el grafico
                 tablaFrecuencias.Rows.Clear(); // limpia tabla de frecuencias observadas
                 graficoValores.Series.Add("Valores");
+
                 graficoValores.Series[0].SetCustomProperty("PointWidth", "1");//ancho de columnas
                 graficoValores.Series[0].BorderColor = Color.Black;
                 double[] minMax = buscarMinMax(); // llama a la funcion para buscarl los vlores minimos y maximo de la lista local
-                //double min = buscarMin();
-                //double max = buscarMax();
+
                 int cantIntervalos = cantidadIntervalos(); // devuelve el valor del combo que se a seleccionado
                 double intervalo = (minMax[1] - minMax[0]) / (double)cantIntervalos-1; //distncia entre intervalos
                 int[] valores = asignarIntervalos(minMax, cantIntervalos); // Devuelve la aparicion de los valores de la lista en los intervalos (desde - hasta) que se muetran en la leyenda del grafico
@@ -135,6 +139,7 @@ namespace TpSIM.Formularios
                     graficoValores.Series.Add(nombreIntervalo); //Crea los valores de la leyenda del grafico
                     graficoValores.Series[0].Points.AddXY((double)(i + 1), valores[i]); //Asigna los valores del eje x (Intervalos) e y (apricion de los numeros en los intervalos) al grafico 
                     tablaFrecuencias.Rows.Add(nombreIntervalo, (valores[i])); // asigna rango de intervalos y los valores de frecuencia observada en cada intervalo
+
                 }
                 
             }

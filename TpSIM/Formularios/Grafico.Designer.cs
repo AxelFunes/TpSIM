@@ -167,6 +167,7 @@
             this.graficoValores.Legends.Add(legend1);
             this.graficoValores.Location = new System.Drawing.Point(400, 77);
             this.graficoValores.Name = "graficoValores";
+
             series1.BorderColor = System.Drawing.Color.Black;
             series1.ChartArea = "ChartArea1";
             series1.CustomProperties = "PointWidth=1";
@@ -174,6 +175,7 @@
             series1.Name = "Valores";
             this.graficoValores.Series.Add(series1);
             this.graficoValores.Size = new System.Drawing.Size(720, 587);
+
             this.graficoValores.TabIndex = 18;
             this.graficoValores.Text = "chart1";
             // 
