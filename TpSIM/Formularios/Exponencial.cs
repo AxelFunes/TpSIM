@@ -12,9 +12,9 @@ namespace TpSIM.Formularios
 {
     public partial class Exponencial : Form
     {
-        float[] lista;
-        float[] minMax = new float[2];
-        float param;
+        double[] lista;
+        double[] minMax = new double[2];
+        //float param;
 
         public Exponencial()
         {
@@ -69,13 +69,13 @@ namespace TpSIM.Formularios
             }
             else if (cmbParametro.Text == Parametro.Media.ToString())
             {
-                lambda = 1 / numero;
+                lambda = Math.Round((1 / numero),4);
             }
             else
             {
-                lambda = Math.Pow(1 / Math.Sqrt(numero), 2);
+                lambda = Math.Round((Math.Pow(1 / Math.Sqrt(numero), 2)),4);
             }
-            param = (float)lambda;
+            //param = (float)lambda;
             return lambda;
         }
 
@@ -91,29 +91,29 @@ namespace TpSIM.Formularios
                         Random rand = new Random();
                         int cantidad = int.Parse(txtCantidad.Text);
                         double lambda = completarExponencial(double.Parse(txtParametro.Text));
-                        lista = new float[cantidad];
+                        lista = new double[cantidad];
                         grilla.Rows.Clear();
 
                         for (int i = 0; i < cantidad; i++)
                         {
                             nroRandom = Math.Round(rand.NextDouble(), 4); // genera un numero RND para calcular el de la distribucion
-                            float xTxt = (float)(-(1 / lambda) * Math.Log(1 - nroRandom));  // Genera un numero con distribucion exponencial negativa
+                            double xTxt = (double)((-1 / lambda) * Math.Log((1 - nroRandom)));  // Genera un numero con distribucion exponencial negativa
 
-                            xTxt = (float)Math.Round(xTxt, 4);
+                            xTxt = (double)Math.Round(xTxt, 4);
 
                             lista[i] = xTxt;
 
-                            // se obtiene de los valores generados el minimos y maximos que se usaran para Chi
-                            if (i == 0)
-                            {
-                                minMax[0] = xTxt;
-                                minMax[1] = xTxt;
-                            }
-                            else
-                            {
-                                if (xTxt < minMax[0]) minMax[0] = xTxt;
-                                if (xTxt > minMax[1]) minMax[1] = xTxt;
-                            }
+                            //// se obtiene de los valores generados el minimos y maximos que se usaran para Chi
+                            //if (i == 0)
+                            //{
+                            //    minMax[0] = xTxt;
+                            //    minMax[1] = xTxt;
+                            //}
+                            //else
+                            //{
+                            //    if (xTxt < minMax[0]) minMax[0] = xTxt;
+                            //    if (xTxt > minMax[1]) minMax[1] = xTxt;
+                            //}
 
                             grilla.Rows.Add(i + 1, nroRandom, xTxt); // carga a la grilla los valores de la iteracion, el RND usado y el valor generado de la distribucion exponencial
                         }

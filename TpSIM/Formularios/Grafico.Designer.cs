@@ -205,10 +205,12 @@
             // 
             // Column1
             // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column1.HeaderText = "Intervalo";
-            this.Column1.MaxInputLength = 500000;
+            this.Column1.MaxInputLength = 50000000;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Width = 73;
             // 
             // Column2
             // 

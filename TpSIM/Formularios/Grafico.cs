@@ -13,9 +13,9 @@ namespace TpSIM.Formularios
 {
     public partial class btnVolverG : Form
     {
-        float[] listaLocal;
+        double[] listaLocal;
 
-        public btnVolverG(float[] lista)
+        public btnVolverG(double[] lista)
         {
             InitializeComponent();
             listaLocal = lista;
@@ -36,11 +36,7 @@ namespace TpSIM.Formularios
         {
             int num;
 
-            if (rb25.Checked)
-            {
-                num = 25;
-            }
-            else if (rb10.Checked)
+            if (rb10.Checked)
             {
                 num = 10;
             }
@@ -48,9 +44,13 @@ namespace TpSIM.Formularios
             {
                 num = 15;
             }
-            else
+            else if (rb20.Checked)
             {
                 num = 20;
+            }
+            else
+            {
+                num = 25;
             }
 
             return num;
@@ -58,21 +58,21 @@ namespace TpSIM.Formularios
 
         private bool verificarSeleccion()
         {
-            if (rb25.Checked || rb10.Checked || rb15.Checked || rb20.Checked)
+            if (rb10.Checked || rb15.Checked || rb20.Checked || rb25.Checked)
             {
                 return true;
             }
             else return false;
         }
 
-        private int[] asignarIntervalos(float[] minMax, int cantIntervalos) // recorre la lista local y cuenta la aparición de los nuemros en los intervalos desde hasta
+        private int[] asignarIntervalos(double[] minMax, int cantIntervalos) // recorre la lista local y cuenta la aparición de los nuemros en los intervalos desde hasta
         {
             int[] posiciones = new int[cantIntervalos];
             //DESCOMENTARIZAR en caso el -1
-            float intervalo = (minMax[1] - minMax[0]) / (cantIntervalos); //Calcula la separacion que habra entre cada intervalo
+            double intervalo = Math.Round(((minMax[1] - minMax[0]) / (double)(cantIntervalos)),4); //Calcula la separacion que habra entre cada intervalo
             //float intervalo = (minMax[1] - minMax[0]) / (cantIntervalos -1); //Calcula la distancia que habra entre cada intervalo (desde - hasta)
-            float intervaloMax = minMax[0] + intervalo;
-            float intervaloMin = minMax[0];
+            double intervaloMax = minMax[0] + intervalo;
+            double intervaloMin = minMax[0];
             for (int i = 0; i < cantIntervalos; i++)
             {
                 for (int j = 0; j < listaLocal.Length; j++)
@@ -87,24 +87,34 @@ namespace TpSIM.Formularios
             }
             return posiciones;
         }
-
-        private float[] buscarMinMax() // busca los vaclores minimo y maximo respectivamente de la lista local
+        private double buscarMin()
         {
-            float[] resultados = new float[2];
-            float min = listaLocal.Min();
-            float max = listaLocal.Max();
+            double min = listaLocal.Min();
+            return min;
+        }
 
-            //for (int i = 0; i < listaLocal.Length; i++)
-            //{
-            //    if (listaLocal[i] > max)
-            //    {
-            //        max = listaLocal[i];
-            //    }
-            //    if (listaLocal[i] < min)
-            //    {
-            //        min = listaLocal[i];
-            //    }
-            //}
+        private double buscarMax()
+        {
+            double max = listaLocal.Max();
+            return max;
+        }
+        private double[] buscarMinMax() // busca los vaclores minimo y maximo respectivamente de la lista local
+        {
+            double[] resultados = new double[2];
+            double min = listaLocal[0];
+            double max = listaLocal[0];
+
+            for (int i = 0; i < listaLocal.Length; i++)
+            {
+                if (listaLocal[i] > max && listaLocal[i] != double.PositiveInfinity)
+                {
+                    max = listaLocal[i];
+                }
+                if (listaLocal[i] < min)
+                {
+                    min = listaLocal[i];
+                }
+            }
 
             resultados[0] = min;
             resultados[1] = max;
@@ -122,19 +132,21 @@ namespace TpSIM.Formularios
                 graficoValores.Series[0].SetCustomProperty("PointWidth", "1");
                 
                 graficoValores.Series[0].BorderColor = Color.Black;
-                float[] minMax = buscarMinMax(); // llama a la funcion para buscarl los vlores minimos y maximo de la lista local
+                double[] minMax = buscarMinMax(); // llama a la funcion para buscarl los vlores minimos y maximo de la lista local
+                //double min = buscarMin();
+                //double max = buscarMax();
                 int cantIntervalos = cantidadIntervalos(); // devuelve el valor del combo que se a seleccionado
-                float intervalo = (minMax[1] - minMax[0]) / (cantIntervalos - 1); //distncia entre intervalos
+                double intervalo = (minMax[1] - minMax[0]) / (double)cantIntervalos-1; //distncia entre intervalos
                 int[] valores = asignarIntervalos(minMax, cantIntervalos); // Devuelve la aparicion de los valores de la lista en los intervalos (desde - hasta) que se muetran en la leyenda del grafico
 
                 for (int i = 0; i < cantIntervalos; i++)
                 {
-                    float min = (float)Math.Round(minMax[0] + (i * intervalo), 4); // valor minimo de la lista local
-                    float max = (float)Math.Round(minMax[0] + ((i + 1) * intervalo), 4); // calor max de la lista local
-                    string nombreIntervalo = (i + 1).ToString() + ": " + (min).ToString() + "-" + (max).ToString();
+                    double minimo = (double)Math.Round(minMax[0] + (i * intervalo), 4); // valor minimo de la lista local
+                    double maximo = (double)Math.Round(minMax[0] + ((i + 1) * intervalo), 4); // valor max de la lista local
+                    string nombreIntervalo = (i + 1).ToString() + ": " + (minimo).ToString() + "-" + (maximo).ToString();
                     graficoValores.Series.Add(nombreIntervalo); //Crea los valores de la leyenda del grafico
-                    graficoValores.Series[0].Points.AddXY((double)(i + 1), (double)valores[i]); //Asigna los valores del eje x (Intervalos) e y (apricion de los numeros en los intervalos) al grafico 
-                    tablaFrecuencias.Rows.Add(nombreIntervalo, (double)(valores[i])); // asigna rango de intervalos y los valores de frecuencia observada en cada intervalo
+                    graficoValores.Series[0].Points.AddXY((double)(i + 1), valores[i]); //Asigna los valores del eje x (Intervalos) e y (apricion de los numeros en los intervalos) al grafico 
+                    tablaFrecuencias.Rows.Add(nombreIntervalo, (valores[i])); // asigna rango de intervalos y los valores de frecuencia observada en cada intervalo
                 }
 
             }

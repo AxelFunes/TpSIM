@@ -12,8 +12,8 @@ namespace TpSIM.Formularios
 {
     public partial class Uniforme : Form
     {
-        float[] lista;
-        float[] minMax = new float[2];
+        double[] lista;
+        double[] minMax = new double[2];
 
         public Uniforme()
         {
@@ -31,7 +31,7 @@ namespace TpSIM.Formularios
                     {
                         Random rand = new Random();
                         int cantidad = int.Parse(txtCantidad.Text);
-                        lista = new float[cantidad]; //Crea una lista con la cantidad de nros que se van a generar
+                        lista = new double[cantidad]; //Crea una lista con la cantidad de nros que se van a generar
 
                         grilla.Rows.Clear();
                         for (int i = 0; i < cantidad; i++)
@@ -39,8 +39,8 @@ namespace TpSIM.Formularios
                             int limiteA = int.Parse(txtLimiteA.Text);
                             int limiteB = int.Parse(txtLimiteB.Text);
                             nroRandom = Math.Round(rand.NextDouble(), 4); // Genera un numero random que se utilizara para generar una distribucion uniforme
-                            float x = (float)(limiteA + nroRandom * (limiteB - limiteA)); // Genera un numero aleatorio con distribucion uniforme usando la formula 𝑋 = 𝐴 + 𝑅𝑁𝐷(𝐵 − 𝐴)
-                            x = (float)Math.Round(x, 4);
+                            double x = (double)(limiteA + nroRandom * (limiteB - limiteA)); // Genera un numero aleatorio con distribucion uniforme usando la formula 𝑋 = 𝐴 + 𝑅𝑁𝐷(𝐵 − 𝐴)
+                            x = (double)Math.Round(x, 4);
 
                             lista[i] = x;
                             grilla.Rows.Add(i + 1, nroRandom, x); // Agrega una fila a la grilla con los valores de la iteracion, RND y el valor de la ditribusion uniforme
@@ -72,13 +72,13 @@ namespace TpSIM.Formularios
 
         private bool verificarEntradas()
         {
-            if (!float.TryParse(txtLimiteA.Text, out float resultado1))
+            if (!double.TryParse(txtLimiteA.Text, out double resultado1))
             {
                 MessageBox.Show("Ingrese correctamente el Limite A");
                 return false;
             }
 
-            if (!float.TryParse(txtLimiteB.Text, out float resultado2))
+            if (!double.TryParse(txtLimiteB.Text, out double resultado2))
             {
                 MessageBox.Show("Ingrese correctamente el Limite B");
                 return false;
@@ -139,7 +139,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar floates
+            // solo permite un punto para representar doublees
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -154,7 +154,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar floates
+            // solo permite un punto para representar doublees
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -169,7 +169,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar floates
+            // solo permite un punto para representar doublees
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;

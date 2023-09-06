@@ -12,8 +12,8 @@ namespace TpSIM.Formularios
 {
     public partial class Normal : Form
     {
-        float[] lista;
-        float[] minMax = new float[2];
+        double[] lista;
+        double[] minMax = new double[2];
         double desviacion;
 
         public Normal()
@@ -63,8 +63,8 @@ namespace TpSIM.Formularios
                         Random random = new Random();
                         int cantidad = int.Parse(txtCantidad.Text);
                         double media = double.Parse(txtMedia.Text);
-                        desviacion = (double)float.Parse(Math.Sqrt(double.Parse(txtVarianza.Text)).ToString());
-                        lista = new float[cantidad];
+                        desviacion = (double)double.Parse(Math.Sqrt(double.Parse(txtVarianza.Text)).ToString());
+                        lista = new double[cantidad];
 
                         grilla.Rows.Clear();
 
@@ -79,7 +79,7 @@ namespace TpSIM.Formularios
                             if (i % 2 == 0)
                             {
                                 string n1s = (Math.Sqrt(-2 * Math.Log(random1)) * Math.Cos(2 * Math.PI * random2) * desviacion + media).ToString(); //Genera un nuemero con distribucion normal usando la 1ra formula de box-muller
-                                float n1 = (float)Math.Round(float.Parse(n1s), 4);
+                                double n1 = (double)Math.Round(double.Parse(n1s), 4);
                                 lista[i] = n1; //Inserta el numero generado de la distribucionen la lista
 
                                 // se obtiene los valores minimos y maximos generados para Chi
@@ -99,7 +99,7 @@ namespace TpSIM.Formularios
                             else
                             {
                                 string n2s = (Math.Sqrt(-2 * Math.Log(random1)) * Math.Sin(2 * Math.PI * random2) * desviacion + media).ToString(); //Genera otro nuemero con distribucion normal usando la 2da formula de box-muller
-                                float n2 = (float)Math.Round(float.Parse(n2s), 4);
+                                double n2 = (double)Math.Round(double.Parse(n2s), 4);
                                 lista[i] = n2; //Inserta el numero generado de la distribucion en en la lista
 
                                 // se obtiene los valores minimos y maximos generados para Chi
@@ -165,7 +165,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar floats
+            // solo permite un punto para representar doubles
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -180,7 +180,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar floates
+            // solo permite un punto para representar doublees
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
@@ -196,7 +196,7 @@ namespace TpSIM.Formularios
                 e.Handled = true;
             }
 
-            // solo permite un punto para representar floates
+            // solo permite un punto para representar doublees
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
