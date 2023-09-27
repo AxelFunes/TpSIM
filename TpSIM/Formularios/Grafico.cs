@@ -73,7 +73,7 @@ namespace TpSIM.Formularios
             int[] posiciones = new int[cantIntervalos];
             //DESCOMENTARIZAR en caso el -1
             double intervalo = Math.Round(((minMax[1] - minMax[0]) / (double)(cantIntervalos)),4); //Calcula la separacion que habra entre cada intervalo, ancho
-            //float intervalo = (minMax[1] - minMax[0]) / (cantIntervalos -1); //Calcula la distancia que habra entre cada intervalo (desde - hasta)
+            //double intervalo = (minMax[1] - minMax[0]) / (cantIntervalos -1); //Calcula la distancia que habra entre cada intervalo (desde - hasta)
             double intervaloMax = minMax[0] + intervalo;
             double intervaloMin = minMax[0];
             for (int i = 0; i < cantIntervalos; i++)
@@ -131,13 +131,13 @@ namespace TpSIM.Formularios
                 double[] minMax = buscarMinMax(); // llama a la funcion para buscarl los vlores minimos y maximo de la lista local
 
                 int cantIntervalos = cantidadIntervalos(); // devuelve el valor del combo que se a seleccionado
-                double intervalo = (minMax[1] - minMax[0]) / (double)cantIntervalos-1; //distncia entre intervalos
+                double intervalo = (minMax[1] - minMax[0]) / (double)cantIntervalos; //distncia entre intervalos
                 int[] valores = asignarIntervalos(minMax, cantIntervalos); // Devuelve la aparicion de los valores de la lista en los intervalos (desde - hasta) que se muetran en la leyenda del grafico
 
                 for (int i = 0; i < cantIntervalos; i++)
                 {
-                    double minimo = (double)Math.Round(minMax[0] + (i * intervalo), 4); // valor minimo de la lista local
-                    double maximo = (double)Math.Round(minMax[0] + ((i + 1) * intervalo), 4); // valor max de la lista local
+                    double minimo = (double)Math.Round(minMax[0] + (i * Math.Abs(intervalo)), 4); // valor minimo de la lista local
+                    double maximo = (double)Math.Round(minMax[0] + ((i + 1) * Math.Abs(intervalo)), 4); // valor max de la lista local
                     string nombreIntervalo = (i + 1).ToString() + ": " + (minimo).ToString() + "-" + (maximo).ToString(); // cadena que se va a utilizar para cargar en el grafico
                     graficoValores.Series.Add(nombreIntervalo); //Crea los valores de la leyenda del grafico
                     graficoValores.Series[0].Points.AddXY((double)(i + 1), valores[i]); //Asigna los valores del eje x (Intervalos) e y (apricion de los numeros en los intervalos) al grafico 

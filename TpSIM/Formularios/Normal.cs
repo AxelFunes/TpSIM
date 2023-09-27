@@ -133,32 +133,32 @@ namespace TpSIM.Formularios
         // los métodos "KeyPress" sirven solo para que el usuario no ingrese letras o simbolos
         private void txtMedia_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-                (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
+            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+            //    (e.KeyChar != '.'))
+            //{
+            //    e.Handled = true;
+            //}
 
-            // solo permite un punto para representar floats
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
+            //// solo permite un punto para representar floats
+            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
         }
 
         private void txtVarianza_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-                (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
+            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+            //    (e.KeyChar != '.'))
+            //{
+            //    e.Handled = true;
+            //}
 
-            // solo permite un punto para representar floats
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
+            //// solo permite un punto para representar floats
+            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
